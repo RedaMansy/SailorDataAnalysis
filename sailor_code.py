@@ -9,43 +9,50 @@ import random
 def series_score(score, n):
 	total_score_minus_max = sum(score[1]) - max(score[1])
 	return total_score_minus_max '''
-
+'''
 def series_score(score, n=1):										#optional parameter, default is 1
 	result_list = score[1]											#defining result list as the first index of the tuple being passed
 	for i in range(n):												#nested for loop that goes through n times based on the optional second parameter
 		for j in result_list:										#loops through the list and removes the highest value
 			if j == max(result_list):
 				result_list.pop(j)
-	return sum(result_list)										#returns the sum of the list after the largest elemnt has been removed n times
+	return sum(result_list)	'''										#returns the sum of the list after the largest elemnt has been removed n times
+'''
+def series_score(score,n=1):
+	ordered_score = sorted(score[1], key=lambda x : x)
+	for i in ordered_score[0:]''' 
 
 
-print(series_score(("Bob",[2,4,1,1,2,5]),2))						#uncomment to see result
+#print(series_score(("Bob",[2,4,1,1,2,5])))							#uncomment to see result
 
 
 #1b
 def sort_series(sailor_series_results):								#function to sort the list of results based on their total sum
 	return sorted(sailor_series_results, key=lambda x: sum(x[1]))	#using the lambda function to sort the first index of the tuple (score list)
 
-
+'''
 print(sort_series([("Alice", [1, 2, 1, 1, 1, 1]), 					#uncomment to see result
 ("Bob", [3, 1, 5, 3, 2, 5]),	
 ("Clare", [2, 3, 2, 2, 4, 2]), 
 ("Dennis", [5, 4, 4, 4, 3, 4]),
-("Eva", [4, 5, 3, 5, 5, 3])])) 
+("Eva", [4, 5, 3, 5, 5, 3])]))''' 
 
 
 #1c
+#def read_sailor_data():
 with open("Data.csv") as csvfile:			
 	reader = csv.reader(csvfile)									#reading csv file, Data.csv
-	sailor_name_dictionary = {}										#empty ordered dictionary
+	sailor_name_dictionary = OrderedDict()										#empty ordered dictionary
 	for row in reader:												#looping through each row to store in dictionary
 		sailor_name_dictionary[row[0]] = row[1], row[2]				#setting the name as the key and the mean and std dev as values
 	print(sailor_name_dictionary)
 
-
 '''
 def generate_performances(sailor_name_dictionary):
-	return random.gauss(sailor_name_dictionary)
+	test_dictionary = OrderedDict()
+	for i in sailor_name_dictionary:
+		test_dictionary[i] = random.gauss(sailor_name_dictionary.get(row[1]), sailor_name_dictionary.get(row[2]))
+	return test_dictionary
 
-print(generate_performances(sailor_name_dictionary['Alice'])) '''
+print(generate_performances(sailor_name_dictionary)) '''
 
