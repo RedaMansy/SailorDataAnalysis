@@ -67,18 +67,25 @@ print('')
 
 #1f
 results = {"Alice": [], "Bob": [], "Clare": [], "Dennis": [], "Eva": []}
-lst = []
 
-for i in range(6):
-	x = generate_performances(read_sailor_data())
-	y = calculate_finishing_order(x)
-	for index, position in enumerate(y,1):
-		print(index,position)
-		lst.append(position)
-		
+def races(results):
+	for i in range(6):
+		generate_performance = generate_performances(read_sailor_data())		#defining all three funcitons into one was possible but it's easier for me to read as sepreate variables
+		finishing_order = calculate_finishing_order(generate_performance)
+		position = 0
+		for sailor in finishing_order:
+			position += 1														
+			results[sailor].append(position)							
+	return results
 
-print(results)
-print(lst)
+sorted_results = sort_series(races(results).items())							#sorting the results based on performance
+
+print(races(results))															#unsorted dictionary of results
+print("")
+print(sorted_results)
+	
+
+
 
 
 
