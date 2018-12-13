@@ -14,11 +14,12 @@ def series_score(score, n=1):										#optional parameter, default is 1
 	return sum(result_list)											#returns the sum of the list after the largest elemnt has been removed n times
 
 
-print(series_score(("Bob",[2,4,1,1,2,5])))							
+print(series_score(("Bob",[2,4,1,1,2,5])))
+print('')							
 
 
 #1b
-def sort_series(sailor_series_results):								#function to sort the list of results based on their total sum
+def sort_series(sailor_series_results):								
 	return sorted(sailor_series_results, key=lambda x: sum(x[1]))	#using the lambda function to sort the first index of the tuple (score list)
 
 
@@ -27,6 +28,7 @@ print(sort_series([("Alice", [1, 2, 1, 1, 1, 1]),
 ("Clare", [2, 3, 2, 2, 4, 2]), 
 ("Dennis", [5, 4, 4, 4, 3, 4]),
 ("Eva", [4, 5, 3, 5, 5, 3])]))
+print('')
 
 
 #1c
@@ -39,7 +41,9 @@ def read_sailor_data():
 		return sailor_name_dictionary
 
 print(read_sailor_data())
+print('')
 
+#1d
 random.seed(57)
 def generate_performances(sailor_name_dictionary):
 	new_score_dictionary = {}								#dictionary with random values based on mean and std dev
@@ -51,20 +55,26 @@ def generate_performances(sailor_name_dictionary):
 	return new_score_dictionary
 
 print(generate_performances(read_sailor_data()))
+print('')
 
-
+#1e
 def calculate_finishing_order(sailor_name_dictionary):
 	sorted_list = sorted(sailor_name_dictionary, reverse=True, key=lambda x : sailor_name_dictionary[x])
 	return sorted_list
 		
 print(calculate_finishing_order(generate_performances(read_sailor_data())))
+print('')
 
 
 results = {"Alice": [], "Bob": [], "Clare": [], "Dennis": [], "Eva": []}
 
-'''
-for i in range(6):
-	print(calculate_finishing_order(generate_performances(read_sailor_data())))'''
+def testdata():
+	for i in range(6):
+		print(calculate_finishing_order(generate_performances(read_sailor_data())))
+
+testdata()
+
+
 
 
 
